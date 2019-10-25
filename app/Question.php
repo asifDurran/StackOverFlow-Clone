@@ -8,7 +8,7 @@ class Question extends Model
 {
     protected $fillable = ['title' ,'body'];
 
-    public function User()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

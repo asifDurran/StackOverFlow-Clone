@@ -12,5 +12,6 @@ $factory->define(\App\Question::class, function (Faker $faker) {
         'views'=> rand(0,10),
         'answers'=> rand(0,10),
         'votes'=> rand(-2,10),
+        'user_id'=>rand(0,20),
     ];
 });

@@ -14,7 +14,14 @@
                     @foreach($questions as $question)
                     <ul class="list-gorup">
                       <li class="list-group-item">
-                        {{$question->title}}
+                        <a href="" class="link"><h4>{{$question->title}}</h4></a>
+                        <p class="lead">
+                          Asked by 
+                          <a href="" class="link">{{$question->user->name}}</a>
+                          <small class="text-muted">
+                           {{$question->created_at->diffForHumans()}}
+                          </small>
+                        </p>
                       </li>
                       <li class="list-group-item">
                         {{$question->body}}
