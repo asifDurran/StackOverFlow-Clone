@@ -8,7 +8,13 @@
         <div class="col-md-10">
           <div class="card">
                 <div class="card-header">
-                  <h2>All Questions</h2>
+                  <div class="d-flex float-left">
+                  <h4>All Questions</h4>
+                  </div>
+                  <div class="d-flex float-right">
+                   <a href="{{route('questions.create')}}" class="btn btn-info btn-sm">Ask Questions</a>   
+                
+                  </div>
                 </div>
                   <div class="card-body">
                     @foreach($questions as $question)
@@ -27,7 +33,7 @@
                        <!-- Counter and voter section  -->
                           
                        <div class="d-flex flex-column counters">
-                          <div class="vote">
+                          <div class="vote ">
                             <strong> {{$question->votes}} </strong> {{Str::plural('vote', $question->votes)}}
                           </div>
 
