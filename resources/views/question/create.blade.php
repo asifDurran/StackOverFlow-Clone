@@ -16,15 +16,15 @@
                     </div>
                       <div class="card-body">
                       <form action="{{route('questions.store')}}" method="post">
-                       @csrf
+                         @csrf
                         <div class="form-group">
                          <label for="Question">Question Title</label>
-                         <input type="text" name="title" id="title" class="form-control">
+                         <input type="text" name="title" id="title" vlaue="{{old('title')}}" class="form-control">
                         </div>
 
                         <div class="form-group">
                          <label for="explainquestoin">Explain your Question</label>
-                         <textarea name="body" id="body" cols="10" rows="10" class="form-control"></textarea>
+                         <textarea name="body" id="body" cols="10" rows="10" class="form-control"> {{old('body')}}</textarea>
                         </div>
                         <div class="form-group">
                          <button type="submit" class="btn btn-outline-primary btn-md ">Submit</button>

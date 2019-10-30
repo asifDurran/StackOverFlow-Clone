@@ -15,10 +15,8 @@ class QuestionsController extends Controller
      */
     public function index()
     {
-        $questions = Question::latest()->paginate(5);
-        $user = User::all();
-
-        return view('question.index',compact('questions','user'));
+        $questions = Question::with('user')->latest()->paginate(5);
+        return view('question.index', compact('questions'));  
     }
 
     /**
@@ -41,7 +39,9 @@ class QuestionsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $question = Question::create($this->validatedRequest());
+
+       return redirect()->route('questions.index');
     }
 
     /**
@@ -87,5 +87,16 @@ class QuestionsController extends Controller
     public function destroy(Question $question)
     {
         //
+    }
+
+    private function validatedRequest()
+    {
+        $validatedData = request()->validate([
+            'title' => 'required',
+            'body' => 'required'
+
+        ]);
+
+        return $validatedData;
     }
 }
