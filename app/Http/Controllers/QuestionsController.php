@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Question;
 use App\User;
 use Illuminate\Http\Request;
+use Session;
 
 class QuestionsController extends Controller
 {
@@ -41,6 +42,9 @@ class QuestionsController extends Controller
     {
        $question = Question::create($this->validatedRequest());
 
+       Session::flash('success','Question stored');
+
+
        return redirect()->route('questions.index');
     }
 
@@ -63,7 +67,7 @@ class QuestionsController extends Controller
      */
     public function edit(Question $question)
     {
-        //
+        return view('question.edit',compact('question'));
     }
 
     /**
@@ -75,7 +79,11 @@ class QuestionsController extends Controller
      */
     public function update(Request $request, Question $question)
     {
-        //
+        $question->update($this->validatedRequest());
+
+        Session::flash('success','Question updated');
+
+        return redirect()->route('questions.index');
     }
 
     /**

@@ -21,7 +21,9 @@
                     <ul class="list-gorup">
 
                       <li class="list-group-item">
-                        
+                        <div class="d-flex float-right">
+                          <a class="btn btn-outline-info btn-sm" href="{{route('questions.edit',$question->id)}}">Edit</a>
+                        </div>
                         <a href="" class="link"><h4>{{$question->title}}</h4></a>
                         <p class="lead">
                           Asked by 

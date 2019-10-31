@@ -7,7 +7,7 @@
               <div class="card">
                     <div class="card-header">
                       <div class="d-flex float-left">
-                      <h4>Ask Question</h4>
+                      <h4>Edit Question</h4>
                       </div>
                       <div class="d-flex float-right">
                       <a href="{{route('questions.index')}}" class="btn btn-info btn-sm">Back to all questions </a>   
@@ -15,8 +15,11 @@
                       </div>
                     </div>
                       <div class="card-body">
-                      <form action="{{route('questions.store')}}" method="post">
-                        @include("question._form", ['buttonText' => "Ask Question"])
+                      <form action="{{route('questions.update',$question->id)}}" method="post">
+
+                        @method('PUT')
+                        
+                        @include("question._form", ['buttonText' => "Edit Question"])
                       </form>
                       
                     </div>
