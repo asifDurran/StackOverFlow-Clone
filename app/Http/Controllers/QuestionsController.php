@@ -94,7 +94,12 @@ class QuestionsController extends Controller
      */
     public function destroy(Question $question)
     {
-        //
+        $question->delete();
+        
+        Session::flash('success','Question deleted');
+
+        return redirect()->route('questions.index');
+
     }
 
     private function validatedRequest()

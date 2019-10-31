@@ -23,6 +23,13 @@
                       <li class="list-group-item">
                         <div class="d-flex float-right">
                           <a class="btn btn-outline-info btn-sm" href="{{route('questions.edit',$question->id)}}">Edit</a>
+                          <form action="{{route('questions.destroy',$question->id)}}" method="post">
+                           @csrf 
+                           @method('DELETE')
+                           <button type="submit" onclick="return confirm('Are you sure to delete it?')" class="btn btn-outline-danger btn-sm">Delete</button>
+
+                          </form>
+
                         </div>
                         <a href="" class="link"><h4>{{$question->title}}</h4></a>
                         <p class="lead">
