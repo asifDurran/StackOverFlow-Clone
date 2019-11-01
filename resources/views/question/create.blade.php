@@ -16,7 +16,8 @@
                     </div>
                       <div class="card-body">
                       <form action="{{route('questions.store')}}" method="post">
-                        @include("question._form", ['buttonText' => "Ask Question"])
+                        @include("question._form", ['buttonText' => "Ask Quesetion"]);
+                        </div>                   
                       </form>
                       
                     </div>

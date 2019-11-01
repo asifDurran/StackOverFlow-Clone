@@ -22,19 +22,27 @@
 
                       <li class="list-group-item">
                         <div class="d-flex float-right">
+
+                        @can('update', $question))
                           <a class="btn btn-outline-info btn-sm" href="{{route('questions.edit',$question->id)}}">Edit</a>
+                        @endcan
+
+                        @can('delete', $question))
+                         
                           <form action="{{route('questions.destroy',$question->id)}}" method="post">
                            @csrf 
                            @method('DELETE')
                            <button type="submit" onclick="return confirm('Are you sure to delete it?')" class="btn btn-outline-danger btn-sm">Delete</button>
-
+                          
                           </form>
-
+                        @endcan
                         </div>
                         <a href="{{route('questions.show',$question->id)}}" class="link"><h4>{{$question->title}}</h4></a>
                         <p class="lead">
-                          Asked by 
-                          <a href="" class="link">{{$question->user->name}}</a>
+                          Asked by       
+                          
+                          <a href="">{{ $question->user->name }}</a> 
+
                           <small class="text-muted">
                            {{$question->created_at->diffForHumans()}}
                           </small>

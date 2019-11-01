@@ -9,7 +9,12 @@ use Session;
 
 class QuestionsController extends Controller
 {
+    public function __construct()
+    {
+       $this->middleware('auth',['except'=>['index','show']]);
+    }
     /**
+     * 
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -27,9 +32,11 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        $question = Question::all();
+       
+        $question = new Question();
 
-        return view('question.create',compact('question'));
+
+        return view('question.create' ,compact('question'));
     }
 
     /**
@@ -69,6 +76,8 @@ class QuestionsController extends Controller
      */
     public function edit(Question $question)
     {
+        $this->authorize("update", $question);
+
         return view('question.edit',compact('question'));
     }
 
@@ -81,6 +90,8 @@ class QuestionsController extends Controller
      */
     public function update(Request $request, Question $question)
     {
+        $this->authorize("update", $question);
+
         $question->update($this->validatedRequest());
 
         Session::flash('success','Question updated');
@@ -96,6 +107,8 @@ class QuestionsController extends Controller
      */
     public function destroy(Question $question)
     {
+        $this->authorize("delete", $question);
+
         $question->delete();
         
         Session::flash('success','Question deleted');
