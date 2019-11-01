@@ -55,7 +55,7 @@
                           </div>
 
                           <div class="status">
-                            <strong> {{$question->answers}} </strong> {{Str::plural('answer', $question->answers)}}
+                            <strong> {{$question->answers_count}} </strong> {{Str::plural('answer', $question->answers_count)}}
                           </div>
 
                           <div class="view">
