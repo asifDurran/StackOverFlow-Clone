@@ -8,10 +8,10 @@
         <div class="col-md-10">
           <div class="card">
                 <div class="card-header">
-                  <div class="d-flex float-left">
+                  <div class="float-left">
                   <h4>All Questions</h4>
                   </div>
-                  <div class="d-flex float-right">
+                  <div class="float-right">
                    <a href="{{route('questions.create')}}" class="btn btn-info btn-sm">Ask Questions</a>   
                 
                   </div>
@@ -47,28 +47,26 @@
                            {{$question->created_at->diffForHumans()}}
                           </small>
                         </p>
-                       <!-- Counter and voter section  -->
                           
-                       <div class="d-flex flex-column counters">
+                      </li>
+                      <li class="list-group-item">
+                        <!-- Counter and voter section  -->
+                        <div class="float-left counters">
                           <div class="vote ">
                             <strong> {{$question->votes}} </strong> {{Str::plural('vote', $question->votes)}}
                           </div>
 
                           <div class="status">
-                            <strong> {{$question->answers_count}} </strong> {{Str::plural('answer', $question->answers_count)}}
+                            <strong> {{$question->answers_count}} </strong> {{Str::plural('answer', $question->answers_counts)}}
                           </div>
 
                           <div class="view">
                             {{$question->views  ." ". Str::plural('view', $question->views)}}
                           </div>
                         </div>
-
-
                         <!-- End of counter and voting section  -->
-
-                      </li>
-                      <li class="list-group-item">
                         {{$question->body}}
+                      
                       </li>
                     
                     </ul>
