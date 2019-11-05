@@ -27,17 +27,39 @@
            <ul class="list-group">
             <li class="list-group-item">
               {!!($answer->body)!!}
-              <div class="float-right">
-                 <span class="text-muted">Answered : {{$answer->created_at->diffForHumans()}}</span>
-                  <div class="media mt-2">
-                    <a href=""  class="pr-2">
-                      <img src="{{$answer->user->avatar}}" alt="">
-                    </a>
-                    <div class="media-body mt-1">
-                     <a href="" class="">{{$answer->user->name}}</a>
-                    </div>
-                  </div>
-               </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="d-flex float-left">
+                      @can('update', $answer)
+                        <a class="btn btn-outline-info btn-sm" href="{{route('questions.answers.edit',[$answer->id,$question->id])}}">Edit</a>
+                      @endcan
+
+                      @can('delete', $answer)
+                      
+                        <form action="{{route('questions.answers.destroy',[$answer->id,$question->id])}}" method="post">
+                        @csrf 
+                        @method('DELETE')
+                        <button type="submit" onclick="return confirm('Are you sure to delete it?')" class="btn btn-outline-danger btn-sm">Delete</button>                        
+                        </form>
+                      @endcan
+                    </div> 
+
+                </div>
+                <div class="col-md-4">
+                </div>
+                    <div class="float-right">
+                     <span class="text-muted">Answered : {{$answer->created_at->diffForHumans()}}</span>
+                      <div class="media mt-2">
+                        <a href=""  class="pr-2">
+                          <img src="{{$answer->user->avatar}}" alt="">
+                        </a>
+                            <div class="media-body mt-1">
+                            <a href="" class="">{{$answer->user->name}}</a>
+                            </div>
+                      </div>
+                   </div>
+            </div>
+        
             </li>
            </ul>
            <hr>

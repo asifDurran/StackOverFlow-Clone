@@ -4,6 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use App\Question;
+use App\Answer;
+use App\Policies\QuestionPolicy;
+use App\Policies\AnswersPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -16,6 +20,7 @@ class AuthServiceProvider extends ServiceProvider
     
         'App\Model' => 'App\Policies\ModelPolicy',
         Question::class => QuestionPolicy::class,
+        Answer::class => AnswersPolicy::class,
 
     ];
 
