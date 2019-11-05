@@ -23,11 +23,11 @@
                       <li class="list-group-item">
                         <div class="d-flex float-right">
 
-                        @can('update', $question))
+                        @can('update', $question)
                           <a class="btn btn-outline-info btn-sm" href="{{route('questions.edit',$question->id)}}">Edit</a>
                         @endcan
 
-                        @can('delete', $question))
+                        @can('delete', $question)
                          
                           <form action="{{route('questions.destroy',$question->id)}}" method="post">
                            @csrf 
