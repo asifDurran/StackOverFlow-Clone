@@ -122,7 +122,7 @@ class QuestionsController extends Controller
         $validatedData = request()->validate([
             'title' => 'required',
             'body' => 'required'
-
+            
         ]);
 
         return $validatedData;
