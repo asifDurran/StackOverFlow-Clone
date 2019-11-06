@@ -95,10 +95,14 @@ class AnswersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Question $question, Answer $answer)
     {
-        
+        $this->authorize('delete',$answer);
+
+        $answer->delete();
+
+        Session::flash('success','Answer deleted');
+
+        return redirect()->back();     
     }
-
-
 }

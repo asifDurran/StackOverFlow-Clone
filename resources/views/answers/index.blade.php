@@ -18,7 +18,7 @@
                 <i class="fas fa-caret-down fa-2x"></i>
               </a>                   
         
-              <a title="Mark as the best answer"class="vote-accepted mt-2 accepted">   
+              <a title="Mark as the best answer"class="{{$answer->status}} mt-2 accepted">   
                 <i class="fas fa-check fa-lg"></i> 
               </a>
             </div> 
@@ -31,12 +31,12 @@
                 <div class="col-md-4">
                   <div class="d-flex float-left">
                       @can('update', $answer)
-                        <a class="btn btn-outline-info btn-sm" href="{{route('questions.answers.edit',[$answer->id,$question->id])}}">Edit</a>
+                        <a class="btn btn-outline-info btn-sm" href="{{route('questions.answer.edit',[$answer->id,$question->id])}}">Edit</a>
                       @endcan
 
                       @can('delete', $answer)
                       
-                        <form action="{{route('questions.answers.destroy',[$answer->id,$question->id])}}" method="post">
+                        <form action="{{route('questions.answer.destroy',[$answer->id,$question->id])}}" method="post">
                         @csrf 
                         @method('DELETE')
                         <button type="submit" onclick="return confirm('Are you sure to delete it?')" class="btn btn-outline-danger btn-sm">Delete</button>                        

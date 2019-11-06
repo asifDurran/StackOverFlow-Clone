@@ -8,7 +8,7 @@
                     <h1>Edit the answer of : {{$question->title}}</h3>
                 </div>
                 <hr>
-                <form action="{{ route('questions.answers.update', [$question->id,$answer->id]) }}" method="post">
+                <form action="{{ route('questions.answer.update', [$question->id,$answer->id]) }}" method="post">
                     @csrf
                     @method('PUT')
                     <div class="form-group">

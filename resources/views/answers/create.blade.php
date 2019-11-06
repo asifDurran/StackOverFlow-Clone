@@ -8,7 +8,7 @@
                     <h3>Your Answer</h3>
                 </div>
                 <hr>
-                <form action="{{ route('questions.answers.store', $question->id) }}" method="post">
+                <form action="{{ route('questions.answer.store', $question->id) }}" method="post">
                     @csrf
                     <div class="form-group">
                         <textarea name="body" id=""  rows="7" class="form-control"></textarea>
