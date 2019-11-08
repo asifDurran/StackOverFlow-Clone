@@ -18,7 +18,7 @@
                 <i class="fas fa-caret-down fa-2x"></i>
               </a>                   
         
-             @can('accept' , $answer)
+             @can('accept',$answer)
               <a title="Mark as the best answer" 
                 class="{{$answer->status}} mt-2 accepted"
                   
@@ -30,7 +30,7 @@
                     @csrf
                 </form>
                 @else
-                  @if($answer->best_answer)
+                  @if($answer->is_best)
                     <a title="Marked as the best answer by the owner" 
                      class="{{$answer->status}} mt-2 accepted"
                       >
