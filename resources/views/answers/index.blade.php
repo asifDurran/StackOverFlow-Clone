@@ -18,9 +18,26 @@
                 <i class="fas fa-caret-down fa-2x"></i>
               </a>                   
         
-              <a title="Mark as the best answer"class="{{$answer->status}} mt-2 accepted">   
-                <i class="fas fa-check fa-lg"></i> 
-              </a>
+             @can('accept' , $answer)
+              <a title="Mark as the best answer" 
+                class="{{$answer->status}} mt-2 accepted"
+                  
+                  onclick="event.preventDefault(); document.getElementById('accept-answer-{{ $answer->id }}').submit();"
+                    >
+                  <i class="fas fa-check fa-lg"></i> 
+                </a>
+                <form id="accept-answer-{{ $answer->id }}" action="{{ route('answers.accept', $answer->id) }}" method="POST" style="display:none;">
+                    @csrf
+                </form>
+                @else
+                  @if($answer->best_answer)
+                    <a title="Marked as the best answer by the owner" 
+                     class="{{$answer->status}} mt-2 accepted"
+                      >
+                    <i class="fas fa-check fa-lg"></i> 
+                  </a>
+                  @endif
+             @endcan
             </div> 
 
              <!-- The section end here  -->
