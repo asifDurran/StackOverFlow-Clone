@@ -28,8 +28,9 @@
                 </a>
                 <form id="accept-answer-{{ $answer->id }}" action="{{ route('answers.accept', $answer->id) }}" method="POST" style="display:none;">
                     @csrf
+                    
                 </form>
-                @else
+                
                   @if($answer->is_best)
                     <a title="Marked as the best answer by the owner" 
                      class="{{$answer->status}} mt-2 accepted"
