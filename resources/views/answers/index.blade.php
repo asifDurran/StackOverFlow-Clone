@@ -10,13 +10,25 @@
            @foreach($answers as $answer) 
              <!-- This section show vote,star, and counts  -->
              <div class="float-left vote-controls">
-              <a title="This answer is useful" class="vote-up">
-                <i class="fas fa-caret-up fa-2x"></i> 
-              </a>   
-              <span class="votes-count">1230</span>                     
-              <a title="This answer is not useful" class="vote-down off"> 
-                <i class="fas fa-caret-down fa-2x"></i>
-              </a>                   
+             <a title="This Answer is useful" class="vote-up {{Auth::guest() ? 'off' : ''}}" 
+                onclick ="event.preventDefault();document.getElementById('up-vote-answer-{{$answer->id}}').submit();"
+                >
+                  <i class="fas fa-caret-up fa-2x"></i> 
+                </a>  
+                <form id="up-vote-answer-{{$answer->id}}" action="/answers/{{$answer->id}}/vote" method="post" style="display:none;"> 
+                    @csrf
+                  <input type="hidden" value="1" name="vote">
+                </form> 
+                <span class="votes-count">{{ $answer->votes_count}}</span>                     
+                <a title="This Answer is not useful" class="vote-down {{Auth::guest() ? 'off' : ''}}" 
+                onclick ="event.preventDefault();document.getElementById('down-vote-answer-{{$answer->id}}').submit();"
+                > 
+                  <i class="fas fa-caret-down fa-2x"></i>
+                </a>  
+                <form id="down-vote-answer-{{$answer->id}}" action="/answers/{{$answer->id}}/vote" method="post" style="display:none;"> 
+                    @csrf
+                  <input type="hidden" value="-1" name="vote">
+                </form>               
         
              @can('accept',$answer)
               <a title="Mark as the best answer" 
