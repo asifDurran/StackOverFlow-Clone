@@ -29,28 +29,6 @@
                     @csrf
                   <input type="hidden" value="-1" name="vote">
                 </form>               
-        
-             @can('accept',$answer)
-              <a title="Mark as the best answer" 
-                class="{{$answer->status}} mt-2 accepted"
-                  
-                  onclick="event.preventDefault(); document.getElementById('accept-answer-{{ $answer->id }}').submit();"
-                    >
-                  <i class="fas fa-check fa-lg"></i> 
-                </a>
-                <form id="accept-answer-{{ $answer->id }}" action="{{ route('answers.accept', $answer->id) }}" method="POST" style="display:none;">
-                    @csrf
-                    
-                </form>
-                
-                  @if($answer->is_best)
-                    <a title="Marked as the best answer by the owner" 
-                     class="{{$answer->status}} mt-2 accepted"
-                      >
-                    <i class="fas fa-check fa-lg"></i> 
-                  </a>
-                  @endif
-             @endcan
             </div> 
 
              <!-- The section end here  -->
@@ -77,16 +55,11 @@
                 </div>
                 <div class="col-md-4">
                 </div>
-                    <div class="float-right">
-                     <span class="text-muted">Answered : {{$answer->created_at->diffForHumans()}}</span>
-                      <div class="media mt-2">
-                        <a href=""  class="pr-2">
-                          <img src="{{$answer->user->avatar}}" alt="">
-                        </a>
-                            <div class="media-body mt-1">
-                            <a href="" class="">{{$answer->user->name}}</a>
-                            </div>
-                      </div>
+                   <div class="col-md-4">
+                     @include('shared.author',[
+                       'model' => $answer,
+                       'label' => 'answered'
+                     ])
                    </div>
             </div>
         
