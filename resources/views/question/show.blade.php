@@ -17,18 +17,31 @@
                       <div class="card-body">
                        
                        <div class="float-left vote-controls">
-                          <a title="This question is useful" class="vote-up">
+                          <a title="This question is useful" class="vote-up {{Auth::guest() ? 'off' : ''}}" 
+                          onclick ="event.preventDefault();document.getElementById('up-vote-question-{{$question->id}}').submit();"
+                          >
                             <i class="fas fa-caret-up fa-2x"></i> 
-                          </a>   
-                          <span class="votes-count">1230</span>                     
-                          <a title="This question is not useful" class="vote-down off"> 
+                          </a>  
+                          <form id="up-vote-question-{{$question->id}}" action="/questions/{{$question->id}}/vote" method="post" style="display:none;"> 
+                             @csrf
+                            <input type="hidden" value="1" name="vote">
+                          </form> 
+                          <span class="votes-count">{{ $question->votes_count}}</span>                     
+                          <a title="This question is not useful" class="vote-down {{Auth::guest() ? 'off' : ''}}" 
+                          onclick ="event.preventDefault();document.getElementById('down-vote-question-{{$question->id}}').submit();"
+                          > 
                             <i class="fas fa-caret-down fa-2x"></i>
-                          </a>                   
-                    
+                          </a>  
+                          <form id="down-vote-question-{{$question->id}}" action="/questions/{{$question->id}}/vote" method="post" style="display:none;"> 
+                             @csrf
+                            <input type="hidden" value="-1" name="vote">
+                          </form>
+
                           <a title="Click to mark as favorite question(Double click to undo)"
                           class="favorite mt-2 {{Auth::guest() ? 'off' : ($question->is_favorited ? 'favorited' : '')}}"  
                            onclick ="event.preventDefault();document.getElementById('favorite-question-{{$question->id}}').submit();"
-                          >   
+                          >  
+
                           <i class="fas fa-star fa-lg"></i> 
                           <span class="favorites-count">{{$question->favorites_count}}</span>
                           </a>
