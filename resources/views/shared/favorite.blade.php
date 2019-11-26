@@ -3,7 +3,7 @@
         onclick ="event.preventDefault();document.getElementById('favorite-question-{{$model->id}}').submit();"
         >  
 
-        <i class="fas fa-star fa-lg"></i> 
+        <i class="fa fa-star fa-lg"></i> 
         <span class="favorites-count">{{$model->favorites_count}}</span>
         </a>
         <form id="favorite-question-{{$model->id}}" action="/questions/{{$question->id}}/favorites" method="POST" style="display:none;"> 

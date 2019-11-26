@@ -19,7 +19,7 @@
         class="vote-up {{ Auth::guest() ? 'off' : '' }}"
         onclick="event.preventDefault(); document.getElementById('up-vote-{{ $formId }}').submit();"
         >
-        <i class="fas fa-caret-up fa-3x"></i>
+        <i class="fa fa-caret-up fa-3x"></i>
     </a>
     <form id="up-vote-{{ $formId }}" action="{{ $formAction }}" method="POST" style="display:none;">
         @csrf
@@ -32,7 +32,7 @@
         class="vote-down {{ Auth::guest() ? 'off' : '' }}"
         onclick="event.preventDefault(); document.getElementById('down-vote-{{ $formId }}').submit();"
         >
-        <i class="fas fa-caret-down fa-3x"></i>
+        <i class="fa fa-caret-down fa-3x"></i>
     </a>
     <form id="down-vote-{{ $formId }}" action="{{ $formAction }}" method="POST" style="display:none;">
         @csrf

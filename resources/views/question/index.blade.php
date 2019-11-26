@@ -3,7 +3,7 @@
 @section('content')
  <div class="container">
    <div class="row justify-content-center">
-     <div class="d-flex justify-content-center">   
+     <div class="float-left">   
        <div class="col-md-12">
           <div class="card">
                 <div class="card-header">
@@ -65,7 +65,7 @@
                         </div>                  
 
                         <!-- End of counter and voting section  -->
-                        {{$question->body}}    
+                         {{$question->body}}   
 
                       </li>
                     
